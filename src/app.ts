@@ -1,8 +1,9 @@
-import express from 'express';
+import express, { Express, NextFunction, Request, Response } from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import dotenv from 'dotenv';
+import createError from 'http-errors';
 
 import indexRouter from './routes/index';
 import postsRouter from './routes/posts';
@@ -15,7 +16,7 @@ if (process.env.NODE_ENV !== 'production') {
   dotenv.config({ path: '.env.prod' });
 }
 
-var app = express();
+const app: Express = express();
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -32,7 +33,7 @@ app.use((req, res, next) => {
 });
 
 // Error handler
-app.use((err, req, res, next) => {
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   // Set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -40,6 +41,7 @@ app.use((err, req, res, next) => {
   // Render the error page
   res.status(err.status || 500);
   res.render('error');
+
 });
 
 export default app;
