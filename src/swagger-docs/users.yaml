@@ -1,0 +1,14 @@
+paths:
+  /users/:
+    get:
+      tags:
+        - User
+      summary: Get All Users
+      description: Fetches a list of all users available in DB
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfUsers'

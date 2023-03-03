@@ -40,7 +40,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
-var post_1 = __importDefault(require("../models/post"));
+var user_1 = __importDefault(require("../models/user"));
 var router = express_1.default.Router();
 /** FETCH all posts */
 router.get('/', function (_, res, next) { return __awaiter(void 0, void 0, void 0, function () {
@@ -49,7 +49,7 @@ router.get('/', function (_, res, next) { return __awaiter(void 0, void 0, void 
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, post_1.default.getAll()];
+                return [4 /*yield*/, user_1.default.getAll()];
             case 1:
                 posts = _a.sent();
                 res.status(200).json(posts);
@@ -59,81 +59,6 @@ router.get('/', function (_, res, next) { return __awaiter(void 0, void 0, void 
                 res.status(500).json(error_1);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
-        }
-    });
-}); });
-/* CREATES a new post */
-router.post('/', function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, user_id, title, content, error_2;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
-            case 0:
-                _a = req.body, user_id = _a.user_id, title = _a.title, content = _a.content;
-                if (!user_id || !title || !content)
-                    res.status(401).send("There's properties missing in payload");
-                _b.label = 1;
-            case 1:
-                _b.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, post_1.default.create(req.body)];
-            case 2:
-                _b.sent();
-                res.status(201).json("Post successfully created!");
-                return [3 /*break*/, 4];
-            case 3:
-                error_2 = _b.sent();
-                res.status(500).json(error_2);
-                return [3 /*break*/, 4];
-            case 4: return [2 /*return*/];
-        }
-    });
-}); });
-/* UPDATES a post */
-router.put('/', function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var post_id, error_3;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                post_id = req.body.post_id;
-                if (!post_id)
-                    res.status(401).send("Need a valid post id");
-                _a.label = 1;
-            case 1:
-                _a.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, post_1.default.update(req.body)];
-            case 2:
-                _a.sent();
-                res.status(200).json("Post successfully updated!");
-                return [3 /*break*/, 4];
-            case 3:
-                error_3 = _a.sent();
-                res.status(500).json(error_3);
-                return [3 /*break*/, 4];
-            case 4: return [2 /*return*/];
-        }
-    });
-}); });
-/* DELETE a posts */
-router.delete('/', function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var post_id, error_4;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                post_id = req.body.post_id;
-                if (!post_id)
-                    res.status(401).send("Need a valid post id");
-                _a.label = 1;
-            case 1:
-                _a.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, post_1.default.del(post_id)];
-            case 2:
-                _a.sent();
-                res.status(200).json("Post has been deleted");
-                return [3 /*break*/, 4];
-            case 3:
-                error_4 = _a.sent();
-                res.status(500).json(error_4);
-                return [3 /*break*/, 4];
-            case 4: return [2 /*return*/];
         }
     });
 }); });

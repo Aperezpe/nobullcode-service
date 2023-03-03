@@ -1,0 +1,72 @@
+paths:
+  /posts/:
+    get:
+      tags:
+        - Post
+      summary: Get Post
+      description: Fetches a list of all posts available in the database
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfPosts'
+    post:
+      tags:
+        - Post
+      summary: Create Post
+      description: Creates a post with the info provided in payload
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/CreatePost'
+          
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema: 
+                type: string
+                example: Post successfully created!
+    put:
+      tags:
+        - Post
+      summary: Update Post
+      description: Updates a post with the info provided in payload
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/UpdatePost'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema: 
+                type: string
+                example: Post successfully updated!
+    delete:
+      tags:
+        - Post
+      summary: Delete Post
+      description: Delete the post given in request body
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/DeletePost'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema: 
+                type: string
+                example: Post has been deleted

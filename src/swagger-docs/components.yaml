@@ -1,0 +1,98 @@
+components:
+  requestBodies:
+    CreatePost:
+      type: object
+      properties:
+        user_id:  
+          type: integer
+          description: Unique Identifier of the user
+          example: 5
+        title:
+          type: string
+          description: Post title
+          example: Why developers are the happiest people in the world?
+        content:
+          type: string
+          description: Post title
+          example: Ullamco nisi magna non cillum. Officia pariatur commodo dolor cillum consectetur velit quis. Tempor amet adipisicing cupidatat ea commodo eu enim enim ut ex anim dolore labore id. Cillum dolore exercitation aliqua amet.
+    UpdatePost:
+      type: object
+      properties:
+        post_id:  
+          type: integer
+          description: Unique Identifier of the post to update
+          example: 5
+        title:
+          type: string
+          description: Post title
+          example: Why developers are the happiest people in the world?
+        content:
+          type: string
+          description: Post title
+          example: Ullamco nisi magna non cillum. Officia pariatur commodo dolor cillum consectetur velit quis. Tempor amet adipisicing cupidatat ea commodo eu enim enim ut ex anim dolore labore id. Cillum dolore exercitation aliqua amet.
+    DeletePost:
+      type: object
+      properties:
+        post_id:  
+          type: integer
+          description: Unique Identifier of the post to update
+          example: 5
+  schemas:
+    ArrayOfPosts:
+      type: array
+      items:
+        oneOf:
+        - $ref: '#/components/schemas/Post'
+        - $ref: '#/components/schemas/Post'
+    ArrayOfUsers:
+      type: array
+      items:
+        oneOf:
+        - $ref: '#/components/schemas/User'
+        - $ref: '#/components/schemas/User'
+    Post:
+      type: object
+      properties:
+        post_id:
+          type: integer
+          description: Unique Identifier of a Post
+          example: 2
+        user_id:
+          type: integer
+          description: Unique Identifier of the user's post
+          example: 9
+        title:
+          type: string
+          description: Post title
+          example: Why CSS is so cool?
+        content:
+          type: string
+          description: Post title
+          example: Labore sit aliquip minim culpa ad ad labore reprehenderit do labore. Ullamco qui proident ea eu sint anim nulla ullamco ex tempor laboris ad ex. In cupidatat exercitation qui aliqua eu minim non qui culpa sint. Amet consequat veniam magna amet ea reprehenderit excepteur fugiat in.
+        created_at:
+          type: date
+          description: The date when the post was created
+          example: 2022-01-15 16:35:03
+        updated_at:
+          type: date
+          description: The most recent date when the post was updated
+          example: 2023-03-25 04:37:03
+    User:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          description: Unique Identifier of the user's post
+          example: 9
+        username:
+          type: string
+          description: User's usernmae
+          example: yolo_777
+        email:
+          type: string
+          description: User's email
+          example: yolo_777@gmail.com
+        password:
+          type: string
+          description: User's password
+          example: <some encrypted password>
