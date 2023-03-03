@@ -12,7 +12,12 @@ Run on your terminal `npm run watch:dev`, the server will restart everytime you 
 
 ### Running Production Server
 
-For stuff like heroku deployment, aws elasticbeanstalk, run `npm run start`
+For stuff like heroku deployment, aws elasticbeanstalk.
+
+Heroku:
+1. Run `npm build` to create the /dist folder
+2. Push code to git
+This will automatically trigger a github CI action. After this is completed, Heroku will detect and deploy whatever is inside /dist
 
 ### Other scripts
 
