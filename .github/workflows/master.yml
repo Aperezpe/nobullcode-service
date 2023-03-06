@@ -28,3 +28,6 @@ jobs:
           
       - name: Install dependencies
         run: npm install
+
+      - name: Build TypeScript code
+        run: npm run build

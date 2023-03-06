@@ -1,6 +1,10 @@
 {
   "ignore": [".git", "node_modules", "dist"],
-  "watch": ["./src"],
-  "exec": "npm start", 
+  "watch": ["./src", "./public"],
+  "verbose": true,
+  "exec": "npm run compile", 
+  "excecMap": {
+    "js": "tsc --watch"
+  },
   "ext": "ts" 
 }
