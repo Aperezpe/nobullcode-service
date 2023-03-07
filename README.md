@@ -8,19 +8,18 @@ Before anything else, you must have node installed on your machine.
 
 ### Running Dev Server
 
-Run on your terminal `npm run watch:dev`, the server will restart everytime you make a change in your code.
+Run on your terminal `npm run start:dev`, the server will restart everytime you make a change in your code.
 
-### Running Production Server
-
-For stuff like heroku deployment, aws elasticbeanstalk.
-
-Heroku:
-1. Run `npm build` to create the /dist folder
-2. Push code to git
-This will automatically trigger a github CI action. After this is completed, Heroku will detect and deploy whatever is inside /dist
+This applciation can run in Docker. If you want to run in Docker and local server individually, I need to run in Docker first, then change PORT in dev.env and run locally. This way, Docker will run in default PORT, and local app will run in new specified port.
 
 ### Other scripts
 
 * `transpile` - convert es6 and beyond code to es5 to a folder named `dist-server`
 * `clean` - delete transpiled folder
 * `build` - clean and transpile
+
+### TODO
+Make container image smaller following this tutorial: I'm in Combining Docker and NCC
+https://webbylab.com/blog/minimal_size_docker_image_for_your_nodejs_app/
+
+Seed the Docker DB.

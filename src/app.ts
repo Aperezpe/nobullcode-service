@@ -11,18 +11,11 @@ import swaggerUi from 'swagger-ui-express';
 import indexRouter from './routes/index';
 import postsRouter from './routes/posts';
 import userRouter from './routes/users';
+import dontenvConfig from './dotenv/dotenv_config';
 
 
 const app = express();
-
-// Loads variables from .env file in development mode
-if (process.env.NODE_ENV !== 'production') {
-  dotenv.config();
-} else {
-  // Loads variables from .env.prod file in production mode
-  dotenv.config({ path: '.env.prod' });
-}
-
+dontenvConfig();
 
 // Declares swagger definition and apis to document
 const options: OAS3Options = {
@@ -35,8 +28,12 @@ const options: OAS3Options = {
     },
     servers: [
       {
-        url: `http://localhost:${process.env.PORT}`,
-        description: 'Development Server'
+        url: `http://localhost:3100`,
+        description: 'Development Local Server'
+      },
+      {
+        url: `http://localhost:3000`,
+        description: 'Production Local Server'
       }
     ]
   },

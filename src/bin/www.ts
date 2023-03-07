@@ -4,11 +4,11 @@
  * Module dependencies.
  */
 
- import app from '../app';
- import debugLib from 'debug';
- import http from 'http';
+import app from '../app';
+import debugLib from 'debug';
+import http from 'http';
 
-var debug = debugLib('myapp:server');
+var debug = debugLib('nobullcode-service:server');
 
 /**
  * Get port from environment and store in Express.
@@ -84,9 +84,12 @@ function onError(error: any) {
  */
 
 function onListening() {
+
   var addr = server.address();
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr?.port;
+
   debug('Listening on ' + bind);
+  debug('Go to /swagger-ui to test api');
 }

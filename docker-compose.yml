@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  node_backend:
+    container_name: node_backend_${ENVIRONMENT}
+    image: nobullcode-service-${ENVIRONMENT}:1.0.0
+    restart: on-failure
+    # The environment variables to use in this file are set using the --env-file flag
+    env_file: # Env variables to use in conatiner
+      - ${ENVIRONMENT}.env
+    build:
+      context: .
+      dockerfile: Dockerfile.${ENVIRONMENT}
+    ports:
+      - '${PORT}:${PORT}'
+    depends_on:
+      - postgres
+  postgres:
+    container_name: ${PGHOST}
+    image: 'postgres:12'
+    ports:
+      - '${PGPORT}:${PGPORT}'
+    volumes:
+      - pgdata1:/var/lib/postgresql/data
+
+volumes:
+  pgdata1: {}

@@ -5,21 +5,25 @@
  */
 
 import { Knex } from 'knex';
+import dontenvConfig from '../dotenv/dotenv_config';
+
 
 interface KnexConfig {
   [key: string]: Knex.Config;
 }
 
+// TODO: Load env file correctly so that I only have to load once
+dontenvConfig();
+
 const knexConfig: KnexConfig = {
   development: {
     client: 'postgresql',
-    searchPath:'nobullcode-blog',
     connection: {
-      database: 'postgres',
-      host: 'nobullcode-test-db.ceaempwduvx9.us-east-2.rds.amazonaws.com',
-      port: 5432,
-      user: 'aperezpe',
-      password: 'Sandia#15'
+      database: process.env.PGNAME,
+      host: process.env.PGHOST,
+      port: Number(process.env.PGPORT),
+      user: process.env.PGUSER,
+      password: process.env.PGPASSWORD
     },
     pool: {
       min: 2,
@@ -28,7 +32,25 @@ const knexConfig: KnexConfig = {
     migrations: {
       tableName: 'knex_migrations'
     }
-  }
+  },
+  production: {
+    client: 'postgresql',
+    searchPath:'nobullcode-blog',
+    connection: {
+      database: process.env.PGNAME,
+      host: process.env.PGHOST,
+      port: Number(process.env.PGPORT),
+      user: process.env.PGUSER,
+      password: process.env.PGPASSWORD
+    },
+    pool: {
+      min: 2,
+      max: 10
+    },
+    migrations: {
+      tableName: 'knex_migrations'
+    }
+  },
 }
 
 export default knexConfig;
